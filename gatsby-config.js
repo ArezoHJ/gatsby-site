@@ -7,7 +7,7 @@ require("dotenv").config();
 module.exports = {
   siteMetadata: {
     title: `My first Gatsby site`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://arezohazarajafari.netlify.app`
   },
   plugins: [{
     resolve: 'gatsby-source-contentful',
