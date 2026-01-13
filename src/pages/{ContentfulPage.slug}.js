@@ -42,7 +42,5 @@ export const Head = ({ data }) => {
     return <title>portfolio</title>
   }
 
-  <meta name="google-site-verification" content="OZx4F5TmW47sGaerQ_WCYu-Ar5qeke4NOGnkHwq3p_4" />
-  
-  return <title>{data.contentfulPage.title}</title>;
+  return <title>{data.contentfulPage.title}</title>
 };

@@ -95,3 +95,13 @@ const Layout = ({ children }) => {
 };
 
 export default Layout;
+
+export const Head = () => (
+    <>
+      <meta
+        name="google-site-verification"
+        content="OZx4F5TmW47sGaerQ_WCYu-Ar5qeke4NOGnkHwq3p_4"
+      />
+    </>
+  );
+  
