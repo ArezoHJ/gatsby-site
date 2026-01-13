@@ -22,7 +22,7 @@ const PortfolioPage = () => {
 
   return (
     <Layout>
-      <h1>Min portfolio</h1>
+      <h1>Min portfoliooooooooooooo</h1>
       <ul>
         {items.map(item => (
           <li key={item.slug}>
