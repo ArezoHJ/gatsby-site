@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arezohazarajafari.netlify.app/sitemap.xml
