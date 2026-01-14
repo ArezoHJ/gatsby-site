@@ -11,7 +11,18 @@ const IndexPage = () => (
  </Layout>
 );
 
-export const Head = () => <title>Hem</title>
+export const Head = () => 
+   (
+      <>
+        <meta
+          name="google-site-verification"
+          content="OZx4F5TmW47sGaerQ_WCYu-Ar5qeke4NOGnkHwq3p_4"
+        />
+        <title>Hem</title>
+      </>
+    );
+   
+
 
 
 export default IndexPage;
