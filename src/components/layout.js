@@ -96,6 +96,7 @@ const Layout = ({ children }) => {
 
 export default Layout;
 
+
 export const Head = () => (
     <>
       <meta
@@ -104,4 +105,5 @@ export const Head = () => (
       />
     </>
   );
+
   
