@@ -1,49 +1,35 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import { graphql } from "gatsby"
+import Layout from "../components/layout"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 
-const pageStyles = {
-  color: "#232129",
-  padding: "96px",
-  fontFamily: "-apple-system, Roboto, sans-serif, serif",
-}
-const headingStyles = {
-  marginTop: 0,
-  marginBottom: 64,
-  maxWidth: 320,
-}
+const NotFoundPage = ({ data }) => {
+  const page = data?.contentfulPage
 
-const paragraphStyles = {
-  marginBottom: 48,
-}
-const codeStyles = {
-  color: "#8A6534",
-  padding: 4,
-  backgroundColor: "#FFF4DB",
-  fontSize: "1.25rem",
-  borderRadius: 4,
-}
-
-const NotFoundPage = () => {
   return (
-    <main style={pageStyles}>
-      <h1 style={headingStyles}>Page not found</h1>
-      <p style={paragraphStyles}>
-        Sorry 😔, we couldn’t find what you were looking for.
-        <br />
-        {process.env.NODE_ENV === "development" ? (
-          <>
-            <br />
-            Try creating a page in <code style={codeStyles}>src/pages/</code>.
-            <br />
-          </>
-        ) : null}
-        <br />
-        <Link to="/">Go home</Link>.
-      </p>
-    </main>
+    <Layout>
+      <main style={{ padding: "4rem 1rem", textAlign: "center" }}>
+        <h1>{page?.title || "404"}</h1>
+
+        {page?.body?.raw && (
+          <div style={{ marginTop: "2rem" }}>
+            {documentToReactComponents(JSON.parse(page.body.raw))}
+          </div>
+        )}
+      </main>
+    </Layout>
   )
 }
 
 export default NotFoundPage
 
-export const Head = () => <title>Not found</title>
+export const query = graphql`
+  query NotFoundPage {
+    contentfulPage(title: { eq: "Page not found" }) {
+      title
+      body {
+        raw
+      }
+    }
+  }
+`

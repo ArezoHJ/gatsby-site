@@ -6,6 +6,7 @@ import PortfolioPage from "./portfolio";
 
 const Page = ({ data }) => {
     const  page = data.contentfulPage;
+    console.log("PAGE DATA:", page);
 
     if (page.slug ===  "portfolio"){
       return <PortfolioPage />;
@@ -14,6 +15,15 @@ const Page = ({ data }) => {
     return (
         <Layout>
             <h1>{page.title}</h1>
+
+
+            {page.image && (
+               <img
+                   src={page.image.url}
+                   alt={page.image.description || page.image.title}
+
+               />
+            )}
             
             {page.body && (
               <div>{renderRichText(page.body)}</div>
@@ -33,6 +43,11 @@ query ($slug: String!) {
     body {
       raw
     }
+     image {
+      url
+      title
+      description
+    } 
   }
 }
 `;

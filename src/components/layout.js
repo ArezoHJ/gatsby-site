@@ -1,98 +1,123 @@
 import * as React from "react";
-import "../styles/global.css";
+import { useState, useEffect } from "react";
 import { Link, graphql, useStaticQuery } from "gatsby";
 import { StaticImage } from "gatsby-plugin-image";
+import "../styles/global.css";
+import { useLocation } from "@reach/router";
 
 const Layout = ({ children }) => {
 
-    const data = useStaticQuery(graphql`
-        query {
-            allContentfulMenuItem(sort: {order: ASC}) {
-              nodes {
-                 label
-                  order
-                   page {
-                       slug
-                    }
-                }
-            }
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const location = useLocation();
+
+
+  const data = useStaticQuery(graphql`
+    query {
+      allContentfulMenuItem(sort: { order: ASC }) {
+        nodes {
+          label
+          order
+          page {
+            slug
+          }
         }
-        
-    `);
+      }
+    }
+  `);
 
+  const menuItems = data.allContentfulMenuItem.nodes;
 
-    const menuItems = data.allContentfulMenuItem.nodes;
-    return (
-        <html lang="en" className="dark">
-            <body>
-                 <header>
-                     <nav className="fixed mx-auto border border-[#33353F] top-0 left-0 right-0 z-10 bg-gray-900 bg-opacity-100">
-                     <div className="flex container lg:py-4 flex-wrap items-center justify-between mx-auto py-2 p-8 md:p-12 lg:p-20">
+  const isActive = (slug) => {
+    const path = slug === "/" || slug === "" ? "/" : `/${slug}`;
+    return location.pathname.startsWith(path) ? "active" : "";
+  };
 
-                     
-                        <Link
-                        to="/"
-                        className="text-2xl md:text-3xl text-white font-normal"
-                         >
-                            <div>
-                             <StaticImage
-                             src="../images/loggan.png"
-                              alt="Arezo Jafari logotyp"
-                              placeholder="blurred"
-                              layout="constrained"
-                               width={50}
-                              />
-                            </div>
-                        </Link>
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "auto";
+  }, [menuOpen]);
+  
 
-                     
-            
-
-               
-              
-                    <div
-                    className="menu hidden md:block md:w-auto"
-                    id="navbar"
-                    >
-                     <ul className="flex p-4 md:p-0 md:flex-row md:space-x-8 mt-0">
-                        {menuItems.map((item) => (
-                      <li key={item.order}>
-                        <Link
-                        to={
-                            item.page.slug === "/" || item.page.slug === ""
-                            ? "/"
-                            : `/${item.page.slug}`
-                        }
-                        className="hover:text-slate-200"
-                        >
-                            {item.label}
-                        </Link>
-                       </li>
-                        ))}
-                      </ul>
-                     </div>
-                    </div>
-                    </nav>
-                </header>
-
-           
+  return (
+    <>
+       {/* OVERLAY */}
+       {menuOpen && (
+        <div
+          className="menu-overlay"
+          onClick={() => setMenuOpen(false)}
+        />
+      )}
       
-                <div className="pt-20">
-                {children}
-                </div>
-          
-            <footer className="mt-auto w-full border-t border-gray-300">
-              <div className="flex justify-center py-6">
-               <p className="text-sm text-gray-500 text-center">
-                © {new Date().getFullYear()} Designed by Arezo Hazara Jafari
-               </p>
-              </div>
-            </footer>
-        
-            </body>
-        </html>
-    );
+      {/* ===== MOBILE SLIDEOUT MENU ===== */}
+      <div className={`slideout-menu ${menuOpen ? "open" : ""}`}>
+        <ul>
+          {menuItems.map((item) => (
+            <li key={item.order}>
+              <Link
+                to={
+                  item.page.slug === "/" || item.page.slug === ""
+                    ? "/"
+                    : `/${item.page.slug}`
+                }
+                onClick={() => setMenuOpen(false)}
+              >
+                {item.label}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* ===== NAVBAR ===== */}
+      <nav className="navbar">
+        <div className="nav-inner">
+          {/* LOGO */}
+          <Link to="/" className="logo">
+            <StaticImage
+              src="../images/logo-new.png"
+              alt="ArezoCoding logo"
+              width={160}
+            />
+          </Link>
+
+          {/* HAMBURGER (MOBILE) */}
+          <button
+            className="menu-icon"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            ☰
+          </button>
+
+          {/* DESKTOP MENU */}
+          <ul className="nav-menu">
+            {menuItems.map((item) => (
+              <li key={item.order}>
+                <Link
+                  to={
+                    item.page.slug === "/" || item.page.slug === ""
+                      ? "/"
+                      : `/${item.page.slug}`
+                  }
+                  className={isActive(item.page.slug)}
+                >
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
+
+      {/* PAGE CONTENT */}
+      <main className="page-content">{children}</main>
+
+      {/* FOOTER */}
+      <footer className="footer">
+        © {new Date().getFullYear()} Designed by Arezo Hazara Jafari
+      </footer>
+    </>
+  );
 };
 
 export default Layout;
-
