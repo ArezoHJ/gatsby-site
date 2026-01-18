@@ -43,7 +43,7 @@ Webbplatsen är deployad på Netlify och uppdateras automatiskt vid ändringar i
 
 ## 🔗 Länkar
 - Live site: https://arezohj.netlify.app
-- GitHub repo: https://github.com/dittnamn/ditt-repo
+- GitHub repo: https://github.com/ArezoHJ/gatsby-site.git
 
 
 
