@@ -23,12 +23,16 @@ const PortfolioItemPage = ({ data }) => {
               const image = getImage(img);
               if (!image) return null;
 
-              return(
+              const isLCP = index === 0;
+
+              return (
                 <GatsbyImage
-                key={index}
-                image = {image}
-                alt={img?.description || `${item.title} bild ${index + 1}`}
-                imageClassName="portfolio-image-img"
+                  key={index}
+                  image={image}
+                  alt={img?.description || `${item.title} bild ${index + 1}`}
+                  loading={isLCP ? "eager" : "lazy"}
+                  priority={isLCP}
+                  imageClassName="portfolio-image-img"
               />
               );
             })}
@@ -49,9 +53,10 @@ query ($slug: String!){
     images {
       description
       gatsbyImageData(
-      layout: CONSTRAINED
-       width: 800
-       placeholder: BLURRED
+      layout: FULL_WIDTH
+      placeholder: BLURRED
+      formats: [AUTO, WEBP, AVIF]
+       quality: 70
        )
     }
   }

@@ -1,3 +1,56 @@
+# Portfolio Website – Gatsby & Contentful
+
+## 📌 Projektbeskrivning
+Detta är en personlig portfoliowebbplats byggd med Gatsby och Contentful (Headless CMS).
+Webbplatsen renderas med Static Site Generation (SSG).
+
+## 🧠 Kursmål som uppfylls
+- Skillnad mellan traditionellt CMS och Headless CMS
+- Rendering med SSG
+- Integration med Headless CMS (Contentful)
+- Administration av innehåll via CMS
+- Publicering av webbplats
+
+## 🛠 Tekniker
+- Gatsby
+- React
+- GraphQL
+- Contentful
+- Netlify
+- Tailwind
+- SSR
+
+## 📄 Sidor
+- Startsida
+- Projektöversikt
+- Enskild projektsida
+- Om mig
+- Kontakt
+- 404-sida
+
+## 🗂 Contentful
+- Content Types:
+  - Project (Portfolio Item)
+  - Page
+  - Navigation (Menu Item)
+- Alla sidor och projekt hämtas dynamiskt från Contentful
+
+## 🖼 Bilder
+Bilder är optimerade med gatsby-plugin-image.
+
+## 🚀 Deployment
+Webbplatsen är deployad på Netlify och uppdateras automatiskt vid ändringar i Contentful.
+
+## 🔗 Länkar
+- Live site: https://arezohj.netlify.app
+- GitHub repo: https://github.com/dittnamn/ditt-repo
+
+
+
+
+
+
+
 <p align="center">
   <a href="https://www.gatsbyjs.com/?utm_source=starter&utm_medium=readme&utm_campaign=minimal-starter">
     <img alt="Gatsby" src="https://www.gatsbyjs.com/Gatsby-Monogram.svg" width="60" />
