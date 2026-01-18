@@ -42,10 +42,43 @@ Bilder är optimerade med gatsby-plugin-image.
 Webbplatsen är deployad på Netlify och uppdateras automatiskt vid ändringar i Contentful.
 
 ## 🔗 Länkar
-- Live site: https://arezohj.netlify.app
+- Live site: https://arezohazarajafari.netlify.app
 - GitHub repo: https://github.com/ArezoHJ/gatsby-site.git
 
 
+## 🔧 Vidareutveckling (VG)
+
+### SEO
+Webbplatsen har god SEO och har analyserats med **Lighthouse i Google Chrome**.
+Webbplatsen är registrerad i Google Search Console och sidorna har skickats för indexering.
+Resultaten visar god prestanda inom:
+- Performance
+- Accessibility
+- Best Practices
+- SEO
+
+För att ytterligare stärka sökmotoroptimeringen har webbplatsen även registrerats
+och verifierats i **Google Search Console**. Sidorna har skickats in för indexering,
+vilket säkerställer att webbplatsen kan upptäckas av sökmotorer.
+
+### Server Side Rendering (SSR)
+Projektet använder serverside-renderad funktionalitet i Gatsby genom användning
+av Gatsby-API:t `onRenderBody`, där meta-taggar renderas på serversidan.
+Detta har bland annat använts för verifiering mot Google Search Console.
+
+Implementationen visar förståelse för hur SSR fungerar i praktiken samt hur
+serverside-rendering kräver korrekt konfiguration vid deployment, exempelvis
+vid publicering på Netlify.
+
+### Vidareutveckling
+Utöver grundkraven har webbplatsen vidareutvecklats med:
+- dynamisk rendering av innehåll från Contentful
+- optimerad bildhantering med Gatsby Image
+- tydlig navigationsstruktur
+- fokus på SEO, prestanda och användarupplevelse
+
+Projektet visar att webbplatsen självständigt och med säkerhet har vidareutvecklats
+med hjälp av Headless CMS.
 
 
 
